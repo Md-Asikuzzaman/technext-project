@@ -1,0 +1,20 @@
+@media screen and (max-width: 992px) {
+  .search__bar {
+    width: 250px !important;
+  }
+
+  .form-select {
+    width: 180px !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .search__bar {
+    width: 100% !important;
+  }
+
+  .form-select {
+    width: 100% !important;
+    flex-shrink: 0 !important;
+  }
+}
