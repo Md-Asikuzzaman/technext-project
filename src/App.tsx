@@ -11,7 +11,10 @@ const App = () => {
       <Header />
       <SearchBar />
       <div className='container flight__wrapper'>
-        <div className='row'>
+        <div className='row g-4'>
+          <Flight />
+          <Flight />
+          <Flight />
           <Flight />
           <Flight />
           <Flight />

@@ -15,7 +15,7 @@
   padding: 4.2px 7.8px;
   border-radius: 4px;
   font-family: helvetica;
-  color: #fff;
+  color: var(--light-color);
   font-weight: 700;
 }
 
@@ -24,20 +24,22 @@
   padding: 4.2px 7.8px;
   border-radius: 4px;
   font-family: helvetica;
-  color: #fff;
+  color: var(--light-color);
   font-weight: 700;
 }
 
 /* CUSTOMIZED CLASSES */
-.site__title {
-  font-size: 40px;
-  color: var(--dark-color);
-}
+header {
+  .site__title {
+    font-size: 40px;
+    color: var(--dark-color);
+  }
 
-.site__sub-title {
-  font-size: 16px;
-  margin-top: 8px;
-  color: var(--mid-gray-color);
+  .site__sub-title {
+    font-size: 16px;
+    margin-top: 8px;
+    color: var(--mid-gray-color);
+  }
 }
 
 .search__bar {
@@ -52,39 +54,39 @@
 
 .flight__wrapper {
   margin-top: 64px;
-}
 
-.flight__card {
-  padding: 32px;
-  gap: 40px;
-  .flight__card-header img {
-    width: 124px;
-    height: 124px;
-  }
-  .flight__card-body {
-    color: var(--gray-color);
-    font-size: 16px;
-    gap: 32px;
-    .launch__date {
-      color: var(--dark-gray-color);
+  .flight__card {
+    padding: 32px;
+    gap: 40px;
+    .flight__card-header img {
+      width: 124px;
+      height: 124px;
     }
-
-    .flight__title {
-      color: var(--dark-color);
-      font-size: 24px;
-      margin-top: 8px;
-    }
-
-    .flight__version {
-      font-size: 14px;
-      color: var(--mid-gray-color);
-      margin-top: 4px;
-    }
-
-    .launch-text {
+    .flight__card-body {
       color: var(--gray-color);
       font-size: 16px;
-      margin-bottom: 8px !important;
+      gap: 32px;
+      .launch__date {
+        color: var(--dark-gray-color);
+      }
+
+      .flight__title {
+        color: var(--dark-color);
+        font-size: 24px;
+        margin-top: 8px;
+      }
+
+      .flight__version {
+        font-size: 14px;
+        color: var(--mid-gray-color);
+        margin-top: 4px;
+      }
+
+      .launch-text {
+        color: var(--gray-color);
+        font-size: 16px;
+        margin-bottom: 8px !important;
+      }
     }
   }
 }

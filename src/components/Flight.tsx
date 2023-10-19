@@ -2,7 +2,7 @@ import React from 'react';
 
 const Flight = () => {
   return (
-    <div className='col-lg-4'>
+    <div className='col-lg-4 col-md-6'>
       <div className='card flight__card justify-content-center align-items-center'>
         <div className='flight__card-header'>
           <img
