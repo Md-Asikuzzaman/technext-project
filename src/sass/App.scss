@@ -52,6 +52,7 @@ header {
   width: 100%;
 }
 
+// FLIGHT CARD
 .flight__wrapper {
   margin-top: 64px;
 
@@ -95,4 +96,11 @@ header {
 .pagination {
   margin-top: 48px;
   margin-bottom: 80px;
+}
+
+// FOOTER
+.footer__text {
+  padding-bottom: 24px !important;
+  font-size: 16px;
+  color: var(--mid-gray-color);
 }

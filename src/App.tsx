@@ -5,6 +5,7 @@ import Header from './components/Header';
 import SearchBar from './components/SearchBar';
 import Flight from './components/Flight';
 import Pagination from './components/Pagination';
+import Footer from './components/Footer';
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
         </div>
         <Pagination />
       </div>
+      <Footer />
     </div>
   );
 };
