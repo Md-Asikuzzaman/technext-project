@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import Header from './components/Header';
 import SearchBar from './components/SearchBar';
 import Flight from './components/Flight';
+import Pagination from './components/Pagination';
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
           <Flight />
           <Flight />
         </div>
+        <Pagination />
       </div>
     </div>
   );
