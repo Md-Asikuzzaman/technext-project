@@ -107,3 +107,13 @@ header {
   font-size: 16px;
   color: var(--mid-gray-color);
 }
+
+
+.single-line-text {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1; /* Number of lines to display */
+  overflow: hidden;
+  white-space: normal;
+  text-overflow: ellipsis;
+}
