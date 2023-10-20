@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 import './../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import { StatusProvider } from './providers/StatusProvider';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -12,7 +13,9 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <App />
+    <StatusProvider>
+      <App />
+    </StatusProvider>
   </React.StrictMode>
 );
 
