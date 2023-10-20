@@ -1,5 +1,3 @@
-'use client';
-
 import React, { useEffect, useState } from 'react';
 import Header from './components/Header';
 import SearchBar from './components/SearchBar';
@@ -8,6 +6,7 @@ import Pagination from './components/Pagination';
 import Footer from './components/Footer';
 import Upcoming from './components/Upcoming';
 import { useStatus } from './providers/StatusProvider';
+import { useSearch } from './providers/SearchProvider';
 
 interface DataType {
   flight_number: number;
@@ -29,6 +28,8 @@ const App = () => {
   const [filteredRockets, setFilteredRockets] = useState<DataType[]>([]);
   const { selectedStatus } = useStatus();
 
+  const { searchQuery } = useSearch();
+
   useEffect(() => {
     const fetchData = async () => {
       const res = await fetch('https://api.spacexdata.com/v3/launches');
@@ -40,16 +41,40 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    if (selectedStatus === 'failed') {
-      const update = rockets.filter((item) => item.launch_success === false);
-      setFilteredRockets(update);
-    } else if (selectedStatus === 'success') {
-      const update = rockets.filter((item) => item.launch_success === true);
-      setFilteredRockets(update);
-    } else if (selectedStatus === '') {
-      setFilteredRockets(rockets);
+    if (searchQuery) {
+      const searchData = rockets.filter((item) =>
+        item.mission_name
+          .toLocaleLowerCase()
+          .includes(searchQuery.toLocaleLowerCase())
+      );
+
+      setFilteredRockets(searchData);
+
+      if (selectedStatus === 'failed') {
+        const update = searchData.filter(
+          (item) => item.launch_success === false
+        );
+        setFilteredRockets(update);
+      } else if (selectedStatus === 'success') {
+        const update = searchData.filter(
+          (item) => item.launch_success === true
+        );
+        setFilteredRockets(update);
+      } else if (selectedStatus === '') {
+        setFilteredRockets(searchData);
+      }
+    } else {
+      if (selectedStatus === 'failed') {
+        const update = rockets.filter((item) => item.launch_success === false);
+        setFilteredRockets(update);
+      } else if (selectedStatus === 'success') {
+        const update = rockets.filter((item) => item.launch_success === true);
+        setFilteredRockets(update);
+      } else if (selectedStatus === '') {
+        setFilteredRockets(rockets);
+      }
     }
-  }, [selectedStatus, rockets]);
+  }, [selectedStatus, rockets, searchQuery]);
 
   return (
     <div>
