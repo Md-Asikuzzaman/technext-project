@@ -26,13 +26,12 @@ interface DataType {
 const App = () => {
   const [rockets, setRockets] = useState<DataType[]>([]);
   const [filteredRockets, setFilteredRockets] = useState<DataType[]>([]);
-
   const [isUpcoming, setIsUpcoming] = useState<boolean>(false);
-  console.log('TCL: App -> isUpcoming', isUpcoming);
 
   const { selectedStatus } = useStatus();
   const { searchQuery } = useSearch();
 
+  // FETCH DATA BY API
   useEffect(() => {
     const fetchData = async () => {
       const res = await fetch('https://api.spacexdata.com/v3/launches');
@@ -43,6 +42,7 @@ const App = () => {
     fetchData();
   }, []);
 
+  // SET DATA BY FILTERING
   useEffect(() => {
     if (isUpcoming) {
       const upComingData = rockets.filter((item) => item.upcoming === true);
@@ -127,6 +127,24 @@ const App = () => {
     }
   }, [selectedStatus, rockets, searchQuery, isUpcoming]);
 
+  // PAGINATION STATE
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [itemsPerPage, setItemsPerPage] = useState<number>(9);
+
+  const [pageNumberLimit, setPageNumberLimit] = useState<number>(5);
+  const [maxPageNumberLimit, setMaxPageNumberLimit] = useState<number>(5);
+  const [minPageNumberLimit, setMinPageNumberLimit] = useState<number>(0);
+
+  const pages = [];
+
+  for (let i = 1; i <= Math.ceil(filteredRockets.length / itemsPerPage); i++) {
+    pages.push(i);
+  }
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = filteredRockets.slice(indexOfFirstItem, indexOfLastItem);
+
   return (
     <div>
       <Header />
@@ -134,15 +152,24 @@ const App = () => {
       <SearchBar />
       <div className='container flight__wrapper'>
         <div className='row g-4'>
-          {filteredRockets.length ? (
-            filteredRockets.map((rocketData) => (
+          {currentItems.length ? (
+            currentItems.map((rocketData) => (
               <Flight key={Math.random() * 99} rocketData={rocketData} />
             ))
           ) : (
             <h1>Loading...</h1>
           )}
         </div>
-        <Pagination />
+        <Pagination
+          pages={pages}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          pageNumberLimit={pageNumberLimit}
+          minPageNumberLimit={minPageNumberLimit}
+          maxPageNumberLimit={maxPageNumberLimit}
+          setMaxPageNumberLimit={setMaxPageNumberLimit}
+          setMinPageNumberLimit={setMinPageNumberLimit}
+        />
       </div>
       <Footer />
     </div>
