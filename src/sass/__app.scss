@@ -108,7 +108,6 @@ header {
   color: var(--mid-gray-color);
 }
 
-
 .single-line-text {
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -116,4 +115,64 @@ header {
   overflow: hidden;
   white-space: normal;
   text-overflow: ellipsis;
+}
+
+// SKELETON DESIGN
+.skeleton {
+  background-color: var(--skeleton-bg-color) !important;
+}
+
+.skeleton__img {
+  height: 124px;
+  width: 124px;
+  background-color: var(--skeleton-fg-color);
+  border-radius: 10px;
+  animation: skeleton 1s linear infinite;
+}
+.skeleton__date {
+  height: 15px;
+  max-width: 220px;
+  width: 100%;
+  background-color: var(--skeleton-fg-color);
+  border-radius: 5px;
+  animation: skeleton 1s linear infinite;
+}
+.skeleton__title {
+  height: 25px;
+  max-width: 120px;
+  width: 100%;
+  background-color: var(--skeleton-fg-color);
+  border-radius: 5px;
+  animation: skeleton 1s linear infinite;
+}
+.skeleton__model {
+  height: 10px;
+  max-width: 80px;
+  width: 100%;
+  background-color: var(--skeleton-fg-color);
+  border-radius: 5px;
+  animation: skeleton 1s linear infinite;
+}
+.skeleton__status {
+  height: 20px;
+  max-width: 80px;
+  width: 100%;
+  background-color: var(--skeleton-fg-color);
+  border-radius: 5px;
+  animation: skeleton 1s linear infinite;
+}
+
+@keyframes skeleton {
+  0% {
+    background-color: var(--skeleton-active-color);
+  }
+  30% {
+    background-color: var(--skeleton-active-color);
+  }
+  50% {
+    background-color: var(--skeleton-fg-color);
+  }
+  100% {
+    background-color: var(--skeleton-active-color);
+  }
 }

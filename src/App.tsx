@@ -7,6 +7,7 @@ import Footer from './components/Footer';
 import Upcoming from './components/Upcoming';
 import { useStatus } from './providers/StatusProvider';
 import { useSearch } from './providers/SearchProvider';
+import Skeleton from './components/Skeleton';
 
 interface DataType {
   flight_number: number;
@@ -41,6 +42,24 @@ const App = () => {
 
     fetchData();
   }, []);
+
+  // PAGINATION STATE
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [itemsPerPage, setItemsPerPage] = useState<number>(9);
+
+  const [pageNumberLimit, setPageNumberLimit] = useState<number>(5);
+  const [maxPageNumberLimit, setMaxPageNumberLimit] = useState<number>(5);
+  const [minPageNumberLimit, setMinPageNumberLimit] = useState<number>(0);
+
+  const pages = [];
+
+  for (let i = 1; i <= Math.ceil(filteredRockets.length / itemsPerPage); i++) {
+    pages.push(i);
+  }
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = filteredRockets.slice(indexOfFirstItem, indexOfLastItem);
 
   // SET DATA BY FILTERING
   useEffect(() => {
@@ -127,23 +146,7 @@ const App = () => {
     }
   }, [selectedStatus, rockets, searchQuery, isUpcoming]);
 
-  // PAGINATION STATE
-  const [currentPage, setCurrentPage] = useState<number>(1);
-  const [itemsPerPage, setItemsPerPage] = useState<number>(9);
-
-  const [pageNumberLimit, setPageNumberLimit] = useState<number>(5);
-  const [maxPageNumberLimit, setMaxPageNumberLimit] = useState<number>(5);
-  const [minPageNumberLimit, setMinPageNumberLimit] = useState<number>(0);
-
-  const pages = [];
-
-  for (let i = 1; i <= Math.ceil(filteredRockets.length / itemsPerPage); i++) {
-    pages.push(i);
-  }
-
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = filteredRockets.slice(indexOfFirstItem, indexOfLastItem);
+  const demoArray: number[] = Array.from({ length: 6 }, (_, index) => index);
 
   return (
     <div>
@@ -152,13 +155,11 @@ const App = () => {
       <SearchBar />
       <div className='container flight__wrapper'>
         <div className='row g-4'>
-          {currentItems.length ? (
-            currentItems.map((rocketData) => (
-              <Flight key={Math.random() * 99} rocketData={rocketData} />
-            ))
-          ) : (
-            <h1>Loading...</h1>
-          )}
+          {currentItems.length
+            ? currentItems.map((rocketData) => (
+                <Flight key={Math.random() * 99} rocketData={rocketData} />
+              ))
+            : demoArray.map((item, index) => <Skeleton key={index} />)}
         </div>
         <Pagination
           pages={pages}

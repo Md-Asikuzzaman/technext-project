@@ -1,8 +1,12 @@
+import { useState } from 'react';
 import { useStatus } from '../providers/StatusProvider';
 
 const Select = () => {
-  const { selectedStatus, setSelectedStatus } = useStatus();
+  const [launchDate, setLaunchDate] = useState<string>('');
+  // LAUNCH BY DATE LOGIC WILL BE GO HERE...
+  const launchByDate = () => {};
 
+  const { selectedStatus, setSelectedStatus } = useStatus();
   const handleStatusChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedStatus(e.target.value);
   };
@@ -20,11 +24,16 @@ const Select = () => {
         <option value='failed'>Failed</option>
       </select>
 
-      <select className='form-select' aria-label='Default select example'>
+      <select
+        value={launchDate}
+        onChange={(e) => setLaunchDate(e.target.value)}
+        className='form-select'
+        aria-label='Default select example'
+      >
         <option value=''>By Launch Date</option>
-        <option value='1'>Last week</option>
-        <option value='2'>Last Month</option>
-        <option value='3'>Last year</option>
+        <option value='last-week'>Last week</option>
+        <option value='last-month'>Last Month</option>
+        <option value='last-year'>Last year</option>
       </select>
     </div>
   );
