@@ -89,7 +89,7 @@ const Pagination: React.FC<PageProps> = ({
       <ul className='pagination'>
         <li className='page-item' onClick={handlePrevPage}>
           <a className='page-link' href='#' aria-label='Previous'>
-            <span aria-hidden='true'>&laquo;</span>
+            <span aria-hidden='true'>&lsaquo;</span>
           </a>
         </li>
 
@@ -99,7 +99,7 @@ const Pagination: React.FC<PageProps> = ({
 
         <li className='page-item' onClick={handleNextPage}>
           <a className='page-link' href='#' aria-label='Next'>
-            <span aria-hidden='true'>&raquo;</span>
+            <span aria-hidden='true'>&rsaquo;</span>
           </a>
         </li>
       </ul>
