@@ -1,3 +1,5 @@
+import { useCallback } from 'react';
+
 interface PageProps {
   pages: number[];
   currentPage: number;
@@ -37,7 +39,7 @@ const Pagination: React.FC<PageProps> = ({
   });
 
   // HANDLE NEXT PAGE WHEN CLICK BUTTON
-  const handleNextPage = () => {
+  const handleNextPage = useCallback(() => {
     if (currentPage != pages[pages.length - 1]) {
       setCurrentPage(Number(currentPage + 1));
       if (currentPage + 1 > maxPageNumberLimit) {
@@ -45,10 +47,10 @@ const Pagination: React.FC<PageProps> = ({
         setMinPageNumberLimit(minPageNumberLimit + pageNumberLimit);
       }
     }
-  };
+  }, [currentPage]);
 
   // HANDLE PREV PAGE WHEN CLICK BUTTON
-  const handlePrevPage = () => {
+  const handlePrevPage = useCallback(() => {
     if (currentPage != pages[0]) {
       setCurrentPage(Number(currentPage - 1));
       if ((currentPage - 1) % pageNumberLimit === 0) {
@@ -56,7 +58,7 @@ const Pagination: React.FC<PageProps> = ({
         setMinPageNumberLimit(minPageNumberLimit - pageNumberLimit);
       }
     }
-  };
+  }, [currentPage]);
 
   // SETUP INCREMENT ELLIPSIS
   let pageIncrementBtn = null;
