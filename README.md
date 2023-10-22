@@ -1,4 +1,4 @@
-# Fullstack Netflix Clone with ReactJS, NextJS, TailwindCSS & Prisma
+# SpaceX API Integration & Implement UI
 
 [LIVE DEMO](https://spacex-asik.netlify.app)
 
